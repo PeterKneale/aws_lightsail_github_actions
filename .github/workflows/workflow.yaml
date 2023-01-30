@@ -14,12 +14,12 @@ env:
   AWS_REGION: ap-southeast-2
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_LIGHTSAIL_SERVICE_NAME: demo-service
   DB_HOST: ${{ secrets.DB_HOST }}
   DB_DATABASE: db
   DB_USERNAME: ${{ secrets.DB_USERNAME }}
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
   DB_PORT: 5432
+  SERVICE_NAME: demo-service
 
 jobs:
 
@@ -44,6 +44,6 @@ jobs:
       - name: Push and Deploy
         run: |
           aws lightsail push-container-image \
-            --service-name ${{ env.AWS_LIGHTSAIL_SERVICE_NAME }} \
+            --service-name ${{ env.SERVICE_NAME }} \
             --label web \
             --image web:latest
