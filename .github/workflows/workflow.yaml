@@ -41,9 +41,16 @@ jobs:
           sudo mv "lightsailctl" "/usr/local/bin/lightsailctl"
           sudo chmod +x /usr/local/bin/lightsailctl
 
-      - name: Push and Deploy
+      - name: Push Docker Image - web 
         run: |
           aws lightsail push-container-image \
             --service-name ${{ env.SERVICE_NAME }} \
             --label web \
             --image web:latest
+      
+      - name: Push Docker Image - service 
+        run: |
+          aws lightsail push-container-image \
+            --service-name ${{ env.SERVICE_NAME }} \
+            --label service \
+            --image service:latest
