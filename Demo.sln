@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{45D3936D-1
 		containers.json = containers.json
 		endpoints.json = endpoints.json
 		.github\workflows\workflow.yaml = .github\workflows\workflow.yaml
+		.dockerignore = .dockerignore
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Global
