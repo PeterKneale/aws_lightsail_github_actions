@@ -1,0 +1,28 @@
+{
+  "web": {
+    "image": "$IMAGE_WEB",
+    "ports": {
+      "80": "HTTP"
+    },
+    "environment": {
+      "ASPNETCORE_ENVIRONMENT": "Development",
+      "ASPNETCORE_URLS" : "http://+:80",
+      "SERVICE_URL": "http://localhost:8080"
+    }
+  },
+  "service": {
+    "image": "$IMAGE_SERVICE",
+    "ports": {
+      "8080": "HTTP"
+    },
+    "environment": {
+      "ASPNETCORE_ENVIRONMENT": "Development",
+      "ASPNETCORE_URLS" : "http://+:8080",
+      "DB_HOST": "$DB_HOST",
+      "DB_DATABASE": "$DB_DATABASE",
+      "DB_USERNAME": "$DB_USERNAME",
+      "DB_PASSWORD": "$DB_PASSWORD",
+      "DB_PORT": "5432"
+    }
+  }
+}
