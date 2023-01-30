@@ -12,12 +12,14 @@ on:
 
 env:
   AWS_REGION: ap-southeast-2
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_LIGHTSAIL_SERVICE_NAME: demo-service
   DB_HOST: ${{ secrets.DB_HOST }}
-  DB_DATABASE: demo
+  DB_DATABASE: db
   DB_USERNAME: ${{ secrets.DB_USERNAME }}
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
   DB_PORT: 5432
-  SERVICE_NAME: demo-service
 
 jobs:
 
@@ -33,13 +35,6 @@ jobs:
       - name: Build Service
         run: docker build -t service -f Service/Dockerfile .
         
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION}}
-
       - name: Install AWS Lightsail
         run: |
           curl "https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl" -o "lightsailctl"
@@ -48,9 +43,7 @@ jobs:
 
       - name: Push and Deploy
         run: |
-          service_name=${{ env.AWS_LIGHTSAIL_SERVICE_NAME }}
           aws lightsail push-container-image \
-            --region ${{ env.AWS_REGION }} \
-            --service-name ${{ env.SERVICE_NAME }} \
+            --service-name ${{ env.AWS_LIGHTSAIL_SERVICE_NAME }} \
             --label web \
             --image web:latest
