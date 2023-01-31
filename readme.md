@@ -40,3 +40,7 @@ aws lightsail  create-container-service-deployment \
     --public-endpoint file://endpoints.json
 ```
 
+
+## References
+- https://stedolan.github.io/jq/
+- https://medium.com/geekculture/deploying-php-app-as-a-container-services-in-amazon-lightsail-with-github-actions-edbe68fcb45d
