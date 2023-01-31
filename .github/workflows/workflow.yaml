@@ -13,7 +13,7 @@ on:
 env:
   AWS_REGION: ap-southeast-2
   DB_HOST: ${{ secrets.DB_HOST }}
-  DB_DATABASE: db
+  DB_DATABASE: demo_db
   DB_USERNAME: ${{ secrets.DB_USERNAME }}
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
   DB_PORT: 5432

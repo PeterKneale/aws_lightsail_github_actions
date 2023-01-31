@@ -39,7 +39,7 @@ aws lightsail create-relational-database\
     --relational-database-name demo-db \
     --relational-database-blueprint-id postgres_12 \
     --relational-database-bundle-id micro_2_0 \
-    --master-database-name db \
+    --master-database-name demo_db \
     --master-username demo_user \
     --master-user-password demo_password
 ```
