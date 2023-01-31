@@ -4,11 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{45D3936D-13A3-420C-9A09-DF104DDD7F0C}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
-		containers.template.json = containers.template.json
-		endpoints.json = endpoints.json
-		.github\workflows\workflow.yaml = .github\workflows\workflow.yaml
-		.dockerignore = .dockerignore
-		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{719C8619-482A-4CF2-B29F-9640A1EFD7CF}"
@@ -16,6 +11,26 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "src\Service\Service.csproj", "{F45F915F-3763-46BC-A492-9184E0EC7AB7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "src\Web\Web.csproj", "{DBC1FEF2-C3C5-4AD5-9E57-8CD8C57DB0F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0922B259-E79E-4AA9-B70D-D3CCF8E7E3AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.UnitTests", "tests\Service.UnitTests\Service.UnitTests.csproj", "{6DA2A210-97FF-4F2A-8EA8-A1D76C2159C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.UnitTests", "tests\Web.UnitTests\Web.UnitTests.csproj", "{7F45CEE5-4CF7-4AC8-874C-DD12655ABFC0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{1FA5BCFF-1CF7-4AC1-87C2-48CD20947C92}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		docker-compose-infra.yml = docker-compose-infra.yml
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{1F3C8EFD-9AAA-4FFB-BAB0-CB202C647144}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\workflow.yaml = .github\workflows\workflow.yaml
+		containers.template.json = containers.template.json
+		endpoints.json = endpoints.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,9 +46,19 @@ Global
 		{DBC1FEF2-C3C5-4AD5-9E57-8CD8C57DB0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBC1FEF2-C3C5-4AD5-9E57-8CD8C57DB0F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBC1FEF2-C3C5-4AD5-9E57-8CD8C57DB0F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DA2A210-97FF-4F2A-8EA8-A1D76C2159C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DA2A210-97FF-4F2A-8EA8-A1D76C2159C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DA2A210-97FF-4F2A-8EA8-A1D76C2159C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DA2A210-97FF-4F2A-8EA8-A1D76C2159C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F45CEE5-4CF7-4AC8-874C-DD12655ABFC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F45CEE5-4CF7-4AC8-874C-DD12655ABFC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F45CEE5-4CF7-4AC8-874C-DD12655ABFC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F45CEE5-4CF7-4AC8-874C-DD12655ABFC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F45F915F-3763-46BC-A492-9184E0EC7AB7} = {719C8619-482A-4CF2-B29F-9640A1EFD7CF}
 		{DBC1FEF2-C3C5-4AD5-9E57-8CD8C57DB0F1} = {719C8619-482A-4CF2-B29F-9640A1EFD7CF}
+		{6DA2A210-97FF-4F2A-8EA8-A1D76C2159C0} = {0922B259-E79E-4AA9-B70D-D3CCF8E7E3AC}
+		{7F45CEE5-4CF7-4AC8-874C-DD12655ABFC0} = {0922B259-E79E-4AA9-B70D-D3CCF8E7E3AC}
 	EndGlobalSection
 EndGlobal

@@ -34,7 +34,7 @@ aws lightsail push-container-image --service-name demo-service --label service -
 ## Deploy to AWS Lightsail
 
 ```shell
-aws lightsail  create-container-service-deployment \
+aws lightsail create-container-service-deployment \
     --service-name demo-service \
     --containers file://containers.json \
     --public-endpoint file://endpoints.json
