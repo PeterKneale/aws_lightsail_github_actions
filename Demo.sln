@@ -8,7 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{45D3936D-13A3-420C-9A09-DF104DDD7F0C}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
-		containers.json = containers.json
+		containers.template.json = containers.template.json
 		endpoints.json = endpoints.json
 		.github\workflows\workflow.yaml = .github\workflows\workflow.yaml
 		.dockerignore = .dockerignore

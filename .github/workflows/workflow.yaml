@@ -12,8 +12,6 @@ on:
 
 env:
   AWS_REGION: ap-southeast-2
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   DB_HOST: ${{ secrets.DB_HOST }}
   DB_DATABASE: db
   DB_USERNAME: ${{ secrets.DB_USERNAME }}
@@ -28,13 +26,23 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v3
-        
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
       - name: Build Web
         run: docker build -t web -f Web/Dockerfile .
         
       - name: Build Service
         run: docker build -t service -f Service/Dockerfile .
-        
+      
+      - name: List the Docker Images and Tags
+        run: docker images list
+       
       - name: Install AWS Lightsail
         run: |
           curl "https://s3.us-west-2.amazonaws.com/lightsailctl/latest/linux-amd64/lightsailctl" -o "lightsailctl"
@@ -54,3 +62,22 @@ jobs:
             --service-name ${{ env.SERVICE_NAME }} \
             --label service \
             --image service:latest
+          
+      - name: Get Latest Web Image
+        run: > 
+          echo "$IMAGE_WEB=$(aws lightsail get-container-images --service-name ${{ env.SERVICE_NAME }} | jq -r '.containerImages | map(select(.image | contains ("web") )) | .[0].image')" >> $GITHUB_ENV
+      
+      - name: Get Latest Service Image
+        run: >
+          echo "$IMAGE_SERVICE=$(aws lightsail get-container-images --service-name ${{ env.SERVICE_NAME }} | jq -r '.containerImages | map(select(.image | contains ("service") )) | .[0].image')" >> $GITHUB_ENV
+          
+      - name: Display Versions
+        run: |
+          echo $IMAGE_WEB
+          echo $IMAGE_SERVICE
+
+      - name: Create containers
+        run: |
+          cat containers.template.json | envsubst > containers.json
+          cat containers.json
+          
