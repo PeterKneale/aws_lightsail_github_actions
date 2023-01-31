@@ -1,7 +1,34 @@
-# AWS Lightsail + Github Actions
+# AWS Lightsail + Github Actions CI CD
 
+## Setup AWS
+
+ Create an IAM User with these permissions
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lightsail:CreateContainerServiceRegistryLogin",
+        "lightsail:GetContainerImages"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lightsail:RegisterContainerImage",
+        "lightsail:CreateContainerServiceDeployment"
+      ],
+      "Resource": "arn:aws:lightsail:*:527559383819:ContainerService/*"
+    }
+  ]
+}
+```
 ## Setup AWS Lightsail
 
+ Create a container service and database
 ```shell
 aws lightsail create-container-service \
     --service-name demo-service \
@@ -17,6 +44,16 @@ aws lightsail create-relational-database\
     --master-user-password db_password
 ```
 
+## Setup GitHub Secrets
+Create secrets for use by the github workflow
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- DB_HOST
+- DB_PASSWORD
+- DB_USERNAME
+
+# Manual Builds
+
 ## Build Docker Images
 
 ```shell
@@ -24,24 +61,15 @@ docker build -t web -f src/Web/Dockerfile .
 docker build -t service -f src/Service/Dockerfile .
 ```
 
-## Push Docker Iamges
+## Push Docker Images
 
 ```shell
 aws lightsail push-container-image --service-name demo-service --label web --image web:latest
 aws lightsail push-container-image --service-name demo-service --label service --image service:latest
 ```
 
-## Deploy to AWS Lightsail
 
-```shell
-aws lightsail create-container-service-deployment \
-    --service-name demo-service \
-    --containers file://containers.json \
-    --public-endpoint file://endpoints.json
-```
-
-
-## References
+# References
 - https://github.com/PeterKneale/aws_lightsail_github_actions
 - https://stedolan.github.io/jq/
 - https://medium.com/geekculture/deploying-php-app-as-a-container-services-in-amazon-lightsail-with-github-actions-edbe68fcb45d
