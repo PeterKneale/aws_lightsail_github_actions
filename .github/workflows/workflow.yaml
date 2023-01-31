@@ -35,10 +35,10 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Build Web
-        run: docker build -t web -f Web/Dockerfile .
+        run: docker build -t web -f src/Web/Dockerfile .
         
       - name: Build Service
-        run: docker build -t service -f Service/Dockerfile .
+        run: docker build -t service -f src/Service/Dockerfile .
       
       - name: List the Docker Images and Tags
         run: docker images list
@@ -49,38 +49,36 @@ jobs:
           sudo mv "lightsailctl" "/usr/local/bin/lightsailctl"
           sudo chmod +x /usr/local/bin/lightsailctl
 
-      - name: Push Docker Image - web 
+      - name: Push Docker Image - Web 
         run: |
           aws lightsail push-container-image \
             --service-name ${{ env.SERVICE_NAME }} \
             --label web \
             --image web:latest
       
-      - name: Push Docker Image - service 
+      - name: Push Docker Image - Service 
         run: |
           aws lightsail push-container-image \
             --service-name ${{ env.SERVICE_NAME }} \
             --label service \
             --image service:latest
           
-      - name: Get Latest Web Image
+      - name: Get Version - Web
         run: > 
           echo "IMAGE_WEB=$(aws lightsail get-container-images --service-name ${{ env.SERVICE_NAME }} | jq -r '.containerImages | map(select(.image | contains ("web") )) | .[0].image')" >> $GITHUB_ENV
       
-      - name: Get Latest Service Image
+      - name: Get Version - Service
         run: >
           echo "IMAGE_SERVICE=$(aws lightsail get-container-images --service-name ${{ env.SERVICE_NAME }} | jq -r '.containerImages | map(select(.image | contains ("service") )) | .[0].image')" >> $GITHUB_ENV
           
       - name: Generate contains.json file
         run: |
-          echo IMAGE_WEB
-          echo IMAGE_SERVICE
           cat containers.template.json | envsubst > containers.json
           cat containers.json
 
       - name: Deploy
         run: |
-          aws lightsail  create-container-service-deployment \
-          --service-name ${{ env.SERVICE_NAME }} \
-          --containers file://containers.json \
-          --public-endpoint file://endpoints.json
+          aws lightsail create-container-service-deployment \
+            --service-name ${{ env.SERVICE_NAME }} \
+            --containers file://containers.json \
+            --public-endpoint file://endpoints.json

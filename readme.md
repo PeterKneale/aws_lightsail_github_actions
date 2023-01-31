@@ -20,8 +20,8 @@ aws lightsail create-relational-database\
 ## Build Docker Images
 
 ```shell
-docker build -t web -f Web/Dockerfile .
-docker build -t service -f Service/Dockerfile .
+docker build -t web -f src/Web/Dockerfile .
+docker build -t service -f src/Service/Dockerfile .
 ```
 
 ## Push Docker Iamges
@@ -42,5 +42,6 @@ aws lightsail  create-container-service-deployment \
 
 
 ## References
+- https://github.com/PeterKneale/aws_lightsail_github_actions
 - https://stedolan.github.io/jq/
 - https://medium.com/geekculture/deploying-php-app-as-a-container-services-in-amazon-lightsail-with-github-actions-edbe68fcb45d

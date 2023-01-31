@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 #
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{2CE825C3-8679-43AC-9B53-21F737CD3FF9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{5EBD634E-72BB-4849-BAA4-057923328DC9}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{45D3936D-13A3-420C-9A09-DF104DDD7F0C}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
@@ -15,19 +11,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{45D3936D-1
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{719C8619-482A-4CF2-B29F-9640A1EFD7CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "src\Service\Service.csproj", "{F45F915F-3763-46BC-A492-9184E0EC7AB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "src\Web\Web.csproj", "{DBC1FEF2-C3C5-4AD5-9E57-8CD8C57DB0F1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2CE825C3-8679-43AC-9B53-21F737CD3FF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CE825C3-8679-43AC-9B53-21F737CD3FF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2CE825C3-8679-43AC-9B53-21F737CD3FF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2CE825C3-8679-43AC-9B53-21F737CD3FF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5EBD634E-72BB-4849-BAA4-057923328DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5EBD634E-72BB-4849-BAA4-057923328DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5EBD634E-72BB-4849-BAA4-057923328DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5EBD634E-72BB-4849-BAA4-057923328DC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F45F915F-3763-46BC-A492-9184E0EC7AB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F45F915F-3763-46BC-A492-9184E0EC7AB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F45F915F-3763-46BC-A492-9184E0EC7AB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F45F915F-3763-46BC-A492-9184E0EC7AB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBC1FEF2-C3C5-4AD5-9E57-8CD8C57DB0F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBC1FEF2-C3C5-4AD5-9E57-8CD8C57DB0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBC1FEF2-C3C5-4AD5-9E57-8CD8C57DB0F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBC1FEF2-C3C5-4AD5-9E57-8CD8C57DB0F1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F45F915F-3763-46BC-A492-9184E0EC7AB7} = {719C8619-482A-4CF2-B29F-9640A1EFD7CF}
+		{DBC1FEF2-C3C5-4AD5-9E57-8CD8C57DB0F1} = {719C8619-482A-4CF2-B29F-9640A1EFD7CF}
 	EndGlobalSection
 EndGlobal
