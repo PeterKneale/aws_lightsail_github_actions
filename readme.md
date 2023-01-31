@@ -40,8 +40,8 @@ aws lightsail create-relational-database\
     --relational-database-blueprint-id postgres_12 \
     --relational-database-bundle-id micro_2_0 \
     --master-database-name db \
-    --master-username db_user \
-    --master-user-password db_password
+    --master-username demo_user \
+    --master-user-password demo_password
 ```
 
 ## Setup GitHub Secrets
@@ -70,6 +70,7 @@ aws lightsail push-container-image --service-name demo-service --label service -
 
 
 # References
+- https://aws.amazon.com/lightsail/
 - https://github.com/PeterKneale/aws_lightsail_github_actions
 - https://stedolan.github.io/jq/
 - https://medium.com/geekculture/deploying-php-app-as-a-container-services-in-amazon-lightsail-with-github-actions-edbe68fcb45d
