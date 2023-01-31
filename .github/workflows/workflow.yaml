@@ -71,13 +71,14 @@ jobs:
         run: >
           echo "$IMAGE_SERVICE=$(aws lightsail get-container-images --service-name ${{ env.SERVICE_NAME }} | jq -r '.containerImages | map(select(.image | contains ("service") )) | .[0].image')" >> $GITHUB_ENV
           
-      - name: Display Versions
-        run: |
-          echo $IMAGE_WEB
-          echo $IMAGE_SERVICE
-
-      - name: Create containers
+      - name: Generate contains.json file
         run: |
           cat containers.template.json | envsubst > containers.json
           cat containers.json
-          
+
+      - name: Deploy
+        run: |
+          aws lightsail  create-container-service-deployment \
+          --service-name ${{ env.SERVICE_NAME }} \
+          --containers file://containers.json \
+          --public-endpoint file://endpoints.json
